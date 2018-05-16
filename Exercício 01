@@ -1,0 +1,76 @@
+/*
+ * Faça um programa que leia os elementos de uma matriz quadrada (mesmos números de linhas e colunas) 
+ * e  mostre os elementos da diagonal principal.
+ */
+
+using System;
+
+namespace Exercicio01
+{
+    class Program
+    {
+        // Método para mostrar os elementos da diagonal principal na tela
+        static void Diagonal(int[,] mat, int linha, int coluna)
+        {
+            Console.WriteLine(" Diagonal principal: ");
+
+            for (int i = 0; i < linha; i++) // Laço para linhas
+            {
+                for(int j = 0; j < coluna; j++) // Laço para colunas
+                {
+                    if (i == j) // Verifica se o elemento pertence à diagonal principal
+                    {
+                        Console.Write(" [{0}]", mat[i, j]);  // Caso positivo, imprime o elemento na tela
+                    }
+                }
+            }
+        }
+
+        // Método para preencher uma matriz
+        static int[,] Matriz(int linha, int coluna)
+        {
+            int[,] matA = new int[linha, coluna];
+
+            for(int i = 0; i < linha; i++)
+            {
+                for(int j = 0; j < coluna; j++)
+                {
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.Write(" Entre com o valor a ser inserido na posição [{0}, {1}] da matriz: ", (i + 1), (j + 1));
+                    matA[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+
+            return matA;
+        }
+        static void Main(string[] args)
+        {
+            // Declaração de variáveis
+            int[,] matriz;
+            int linha, coluna;
+
+            // Recebendo tamanho da matriz do usuário
+            Console.Clear();
+            Console.WriteLine();
+            Console.Write(" Entre com o número de linhas da matriz: ");
+            linha = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            Console.Write(" Entre com o número de colunas da matriz: ");
+            coluna = int.Parse(Console.ReadLine());
+
+            // Inicializando matriz com os valores recebidos
+            matriz = Matriz(linha, coluna);
+
+            // Chamando o método 'Diagonal' que mostra a diagonal principal da matriz na tela
+            Console.Clear();
+            Console.WriteLine();
+            Diagonal(matriz, linha, coluna);
+
+            // Finalizando o programa
+            Console.WriteLine();
+            Console.WriteLine(" Pressione qualquer tecla para sair..");
+            Console.ReadKey();
+        }
+    }
+}
