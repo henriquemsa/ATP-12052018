@@ -1,0 +1,60 @@
+/*
+ * Faça um programa que carregue uma matriz 3 x 5 com números inteiros, calcule e mostre a quantidade de elementos entre 15 e 20.
+ */
+
+using System;
+
+namespace Exercicio4
+{
+    class Program
+    {
+        // Método para preencher uma matriz
+        static int[,] Preencher(int linha, int coluna)
+        {
+            int[,] matA = new int[linha, coluna];
+
+            for (int i = 0; i < linha; i++)
+            {
+                for (int j = 0; j < coluna; j++)
+                {
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.Write(" Entre com o valor a ser inserido na posição [{0}, {1}] da matriz: ", (i + 1), (j + 1));
+                    matA[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+            // Retorna a matriz preenchida
+            return matA;
+        }
+
+        static void Main(string[] args)
+        {
+            // Declaração de variáveis
+            int linha = 3, coluna = 5, elementos = 0;
+            int[,] matA = new int[linha, coluna];
+
+            // Chamando o método 'Preencher' para inserir valores nas posições da matriz
+            matA = Preencher(linha, coluna);
+
+            // Percorrendo 'matA' e salvando a quantidade de elementos que estão entre 15 e 20
+            for (int i = 0; i < linha; i++)
+            {
+                for (int j = 0; j < coluna; j++)
+                {
+                    if (matA[i, j] >= 15 && matA[i, j] <= 20)
+                    {
+                        elementos++;
+                    }
+                }
+            }
+
+            // Imprimindo resultado e finalizando o programa
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine(" Existem {0} elementos com um valor entre 15 e 20 na matriz.", elementos);
+            Console.WriteLine();
+            Console.WriteLine(" Pressione qualquer tecla para sair...");
+            Console.ReadKey();
+        }
+    }
+}
