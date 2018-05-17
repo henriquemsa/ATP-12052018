@@ -1,0 +1,81 @@
+/*
+ * Faça um programa que carregue uma matriz 3 x 3 com números reais e receba um valor digitado pelo usuário, calcule e 
+ * mostre a matriz resultante da multiplicação do número digitado pelos elementos da matriz.
+ */
+
+using System;
+
+namespace Exercicio5
+{
+    class Program
+    {
+        // Método para imprimir uma matriz
+        static void Imprime(double[,] mat, int linha, int coluna)
+        {
+            Console.WriteLine(" Matriz [{0}x{1}]: ", linha, coluna);
+
+            for (int i = 0; i < linha; i++) // Laço para linhas
+            {
+                for (int j = 0; j < coluna; j++) // Laço para colunas
+                {
+                    Console.Write(" [{0}]", mat[i, j]);  // Caso positivo, imprime o elemento na tela
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        // Método para preencher uma matriz
+        static double[,] Preencher(int linha, int coluna)
+        {
+            double[,] matA = new double[linha, coluna];
+
+            for (int i = 0; i < linha; i++)
+            {
+                for (int j = 0; j < coluna; j++)
+                {
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.Write(" Entre com o valor a ser inserido na posição [{0}, {1}] da matriz: ", (i + 1), (j + 1));
+                    matA[i, j] = double.Parse(Console.ReadLine());
+                }
+            }
+            // Retorna a matriz preenchida
+            return matA;
+        }
+
+        static void Main(string[] args)
+        {
+            // Declaração de variáveis
+            int linha = 3, coluna = 3, numero;
+            double[,] matA = new double[linha, coluna];
+            double[,] matB = new double[linha, coluna];
+
+            // Chamando o método 'Preencher' para inserir valores nas posições da matriz
+            matA = Preencher(linha, coluna);
+
+            // Recebendo o número a ser multiplicado do usuário
+            Console.Clear();
+            Console.WriteLine();
+            Console.Write(" Entre com um valor a ser multiplicado pela matriz: ");
+            numero = int.Parse(Console.ReadLine());
+
+            // Percorrendo 'matA' e multiplicando seus valores por 'numero', o resultado é salvo em 'matB'
+            for (int i = 0; i < linha; i++)
+            {
+                for (int j = 0; j < coluna; j++)
+                {
+                    matB[i, j] = matA[i, j] * numero;
+                }
+            }
+
+            // Imprimindo resultado e finalizando o programa
+            Console.Clear();
+            Console.WriteLine();
+            Imprime(matB, linha, coluna);
+            Console.WriteLine();
+            Console.WriteLine(" Pressione qualquer tecla para sair...");
+            Console.ReadKey();
+        }
+    }
+}
